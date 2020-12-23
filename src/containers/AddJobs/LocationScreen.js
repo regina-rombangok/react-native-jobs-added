@@ -27,12 +27,13 @@ const DATA = [
 
 export default function LocationScreen({ route, navigation }) {
   const { neededService } = route.params;
+  const [location, setLocation] = useState('Bexar');
 
   const onPress = () => {
-    console.log('AAA');
+    navigation.navigate('Description', {
+      neededService, location
+    })
   }
-
-  const [location, setLocation] = useState('Bexar');
 
   return (
     <SafeAreaView style={styles.container}>

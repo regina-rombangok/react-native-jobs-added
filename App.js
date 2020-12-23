@@ -4,6 +4,7 @@ import { createStackNavigator } from '@react-navigation/stack';
 import HomeScreen from './src/containers/AddJobs/HomeScreen';
 import SubsNeededScreen from './src/containers/AddJobs/SubsNeededScreen';
 import LocationScreen from './src/containers/AddJobs/LocationScreen';
+import DescriptionScreen from './src/containers/AddJobs/DescriptionScreen';
 
 const Stack = createStackNavigator();
 
@@ -21,6 +22,11 @@ function App() {
           name="Location"
           component={LocationScreen}
           options={{ title: 'Location' }}
+        />
+        <Stack.Screen
+          name="Description"
+          component={DescriptionScreen}
+          options={{ title: 'Description' }}
         />
       </Stack.Navigator>
     </NavigationContainer>
