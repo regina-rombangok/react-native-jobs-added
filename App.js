@@ -1,47 +1,24 @@
-import { StatusBar } from 'expo-status-bar';
-import React from 'react';
-import { StyleSheet, Text, View, TouchableOpacity } from 'react-native';
+import * as React from 'react';
+import { NavigationContainer } from '@react-navigation/native';
+import { createStackNavigator } from '@react-navigation/stack';
+import HomeScreen from './src/containers/AddJobs/HomeScreen';
+import SubsNeeded from './src/containers/AddJobs/SubsNeeded';
 
-export default function App() {
-  const onPress = () => {
-    console.log('AAA');
-  }
+const Stack = createStackNavigator();
 
+function App() {
   return (
-    <View style={styles.container}>
-      <Text style={styles.title}>General Contractor Selection Process!</Text>
-      <TouchableOpacity
-        style={styles.button}
-        onPress={onPress}
-      >
-        <Text style={styles.buttonLabel}>Start</Text>
-      </TouchableOpacity>
-      <StatusBar style="auto" />
-    </View>
+    <NavigationContainer>
+      <Stack.Navigator initialRouteName="Home">
+        <Stack.Screen name="Home" component={HomeScreen} />
+        <Stack.Screen
+          name="SubsNeeded"
+          component={SubsNeeded}
+          options={{ title: 'Subs Needed' }}
+        />
+      </Stack.Navigator>
+    </NavigationContainer>
   );
 }
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-  title: {
-    fontSize: 20,
-    margin: 16,
-  },
-  button: {
-    width: 200,
-    borderRadius: 20,
-    backgroundColor: '#3234a8',
-    height: 40,
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-  buttonLabel: {
-    fontSize: 20,
-    color: 'white',
-  }
-});
+export default App;
