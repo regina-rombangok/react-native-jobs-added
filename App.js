@@ -5,6 +5,7 @@ import HomeScreen from './src/containers/AddJobs/HomeScreen';
 import SubsNeededScreen from './src/containers/AddJobs/SubsNeededScreen';
 import LocationScreen from './src/containers/AddJobs/LocationScreen';
 import DescriptionScreen from './src/containers/AddJobs/DescriptionScreen';
+import FilesScreen from './src/containers/AddJobs/FilesScreen';
 
 const Stack = createStackNavigator();
 
@@ -27,6 +28,11 @@ function App() {
           name="Description"
           component={DescriptionScreen}
           options={{ title: 'Description' }}
+        />
+        <Stack.Screen
+          name="Files"
+          component={FilesScreen}
+          options={{ title: 'Files' }}
         />
       </Stack.Navigator>
     </NavigationContainer>

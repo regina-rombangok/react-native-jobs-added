@@ -5,7 +5,9 @@ export default function DescriptionScreen({ route, navigation }) {
   const { neededService, location } = route.params;
 
   const onPress = () => {
-    console.log('AAA');
+    navigation.navigate('Files', {
+      neededService, location, description,
+    });
   }
 
   const [description, setDescription] = useState('');
