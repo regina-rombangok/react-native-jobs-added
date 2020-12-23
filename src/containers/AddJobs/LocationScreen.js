@@ -25,7 +25,9 @@ const DATA = [
   },
 ];
 
-export default function LocationScreen({ navigation }) {
+export default function LocationScreen({ route, navigation }) {
+  const { neededService } = route.params;
+
   const onPress = () => {
     console.log('AAA');
   }
@@ -36,8 +38,8 @@ export default function LocationScreen({ navigation }) {
     <SafeAreaView style={styles.container}>
       <Picker
         selectedValue={location}
-        style={{ height: 50, width: 100 }}
-        onValueChange={(itemValue, itemIndex) => setLocation(itemValue)}>
+        style={{ height: 50, width: 150 }}
+        onValueChange={(itemValue) => setLocation(itemValue)}>
         <Picker.Item label="Bexar" value="Bexar" />
         <Picker.Item label="Travis" value="Travis" />
         <Picker.Item label="Tarrant" value="Tarrant" />
@@ -59,6 +61,7 @@ const styles = StyleSheet.create({
     flex: 1,
     margin: StatusBar.currentHeight,
     alignItems: 'center',
+    justifyContent: 'space-evenly',
   },
   button: {
     width: 200,

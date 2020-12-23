@@ -1,5 +1,5 @@
-import React from 'react';
-import { Text, View, FlatList, SafeAreaView, StyleSheet, StatusBar, TouchableOpacity } from 'react-native';
+import React, { useState } from 'react';
+import { Text, View, FlatList, SafeAreaView, StyleSheet, StatusBar, TouchableOpacity, TouchableWithoutFeedback } from 'react-native';
 
 const DATA = [
   {
@@ -72,17 +72,32 @@ const DATA = [
   },
 ];
 
-const Item = ({ title }) => (
-  <View style={styles.item}>
-    <Text style={styles.title}>{title}</Text>
-  </View>
-);
-
 export default function SubNeededScreen({ navigation }) {
   const [selectedSub, setSelectedSub] = useState('Cleaning prep');
-  const renderItem = ({ item }) => <Item title={item.title} />;
+  const renderItem = ({ item }) => (
+    <TouchableWithoutFeedback onPress={() => actionOnRow(item)}>
+      <View style={styles.item}>
+        <Text
+          style={{
+            ...styles.title,
+            color: item.title === selectedSub ? '#3234a8' : 'black',
+            fontWeight: item.title === selectedSub ? 'bold' : 'normal',
+          }}
+        >
+          {item.title}
+        </Text>
+      </View>
+    </TouchableWithoutFeedback>
+  );
+
+  const actionOnRow = (item) => {
+    setSelectedSub(item.title);
+  }
+
   const onPress = () => {
-    navigation.navigate('Location');
+    navigation.navigate('Location', {
+      neededService: selectedSub,
+    });
   }
 
   return (
