@@ -78,15 +78,16 @@ const Item = ({ title }) => (
   </View>
 );
 
-export default function DetailsScreen() {
+export default function SubNeededScreen({ navigation }) {
+  const [selectedSub, setSelectedSub] = useState('Cleaning prep');
   const renderItem = ({ item }) => <Item title={item.title} />;
   const onPress = () => {
-    console.log('AAA');
+    navigation.navigate('Location');
   }
 
   return (
     <SafeAreaView style={styles.container}>
-      <FlatList data={DATA} renderItem={renderItem} keyExtractor={item => item.id} style={styles.list} />
+      <FlatList data={DATA} renderItem={renderItem} keyExtractor={item => item.id.toString()} style={styles.list} />
       <TouchableOpacity
         style={styles.button}
         onPress={onPress}

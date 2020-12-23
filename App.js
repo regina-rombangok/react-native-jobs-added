@@ -2,7 +2,8 @@ import * as React from 'react';
 import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
 import HomeScreen from './src/containers/AddJobs/HomeScreen';
-import SubsNeeded from './src/containers/AddJobs/SubsNeeded';
+import SubsNeededScreen from './src/containers/AddJobs/SubsNeededScreen';
+import LocationScreen from './src/containers/AddJobs/LocationScreen';
 
 const Stack = createStackNavigator();
 
@@ -13,8 +14,13 @@ function App() {
         <Stack.Screen name="Home" component={HomeScreen} />
         <Stack.Screen
           name="SubsNeeded"
-          component={SubsNeeded}
+          component={SubsNeededScreen}
           options={{ title: 'Subs Needed' }}
+        />
+        <Stack.Screen
+          name="Location"
+          component={LocationScreen}
+          options={{ title: 'Location' }}
         />
       </Stack.Navigator>
     </NavigationContainer>

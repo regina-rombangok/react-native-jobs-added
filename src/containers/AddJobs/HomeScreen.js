@@ -4,7 +4,7 @@ import { StyleSheet, Text, View, TouchableOpacity } from 'react-native';
 
 export default function HomeScreen({ navigation }) {
   const onPress = () => {
-    navigation.navigate('SubsNeeded')
+    navigation.navigate('SubsNeeded');
   }
 
   return (
