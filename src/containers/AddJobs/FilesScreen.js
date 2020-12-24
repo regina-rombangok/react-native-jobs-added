@@ -9,7 +9,9 @@ export default function FilesScreen({ route, navigation }) {
   const [file3, setFile3] = useState('');
 
   const onPress = () => {
-    console.log('AAA');
+    navigation.navigate('MaxBid', {
+      neededService, location, description,
+    });
   }
 
   const onUpload = async (number) => {

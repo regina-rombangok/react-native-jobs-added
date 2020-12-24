@@ -6,6 +6,7 @@ import SubsNeededScreen from './src/containers/AddJobs/SubsNeededScreen';
 import LocationScreen from './src/containers/AddJobs/LocationScreen';
 import DescriptionScreen from './src/containers/AddJobs/DescriptionScreen';
 import FilesScreen from './src/containers/AddJobs/FilesScreen';
+import MaxBidScreen from './src/containers/AddJobs/MaxBidScreen';
 
 const Stack = createStackNavigator();
 
@@ -33,6 +34,11 @@ function App() {
           name="Files"
           component={FilesScreen}
           options={{ title: 'Files' }}
+        />
+        <Stack.Screen
+          name="MaxBid"
+          component={MaxBidScreen}
+          options={{ title: 'Maximum Bid' }}
         />
       </Stack.Navigator>
     </NavigationContainer>
