@@ -1,12 +1,26 @@
-import React, { useState } from 'react';
-import { Text, SafeAreaView, StyleSheet, StatusBar, TouchableOpacity, TextInput, View } from 'react-native';
-import * as DocumentPicker from 'expo-document-picker';
+import React, { useState, useEffect } from 'react';
+import { Text, SafeAreaView, StyleSheet, StatusBar, TouchableOpacity, TextInput, View, Platform } from 'react-native';
+// import * as DocumentPicker from 'expo-document-picker';
+import * as ImagePicker from 'expo-image-picker';
+import Constants from 'expo-constants';
+import * as MediaLibrary from 'expo-media-library';
 
 export default function FilesScreen({ route, navigation }) {
   const { neededService, location, description } = route.params;
   const [file1, setFile1] = useState('');
   const [file2, setFile2] = useState('');
   const [file3, setFile3] = useState('');
+
+  useEffect(() => {
+    (async () => {
+      if (Platform.OS !== 'web') {
+        const { status } = await ImagePicker.requestMediaLibraryPermissionsAsync();
+        if (status !== 'granted') {
+          alert('Sorry, we need camera roll permissions to make this work!');
+        }
+      }
+    })();
+  }, []);
 
   const onPress = () => {
     navigation.navigate('MaxBid', {
@@ -15,14 +29,31 @@ export default function FilesScreen({ route, navigation }) {
   }
 
   const onUpload = async (number) => {
-    let result = await DocumentPicker.getDocumentAsync({});
+    // let result = await DocumentPicker.getDocumentAsync({});
 
-    if (number == 1) 
-      setFile1(result.name);
-    else if (number == 2)
-      setFile2(result.name);
-    else if (number == 3)
-      setFile3(result.name);
+    // if (number == 1) 
+    //   setFile1(result.name);
+    // else if (number == 2)
+    //   setFile2(result.name);
+    // else if (number == 3)
+    //   setFile3(result.name);
+
+    let result = await ImagePicker.launchCameraAsync({
+      mediaTypes: ImagePicker.MediaTypeOptions.Images,
+      allowsEditing: true,
+      quality: 1,
+    });
+
+    if (!result.cancelled) {
+      if (number == 1) 
+        setFile1(result.uri);
+      else if (number == 2)
+        setFile2(result.uri);
+      else if (number == 3)
+        setFile3(result.uri);
+    }
+
+    await MediaLibrary.saveToLibraryAsync(result.uri);
   }
 
   return (

@@ -23,7 +23,12 @@
       "adaptiveIcon": {
         "foregroundImage": "./assets/adaptive-icon.png",
         "backgroundColor": "#FFFFFF"
-      }
+      },
+      "package": "com.vhs.test",
+      "permissions": [
+        "CAMERA_ROLL",
+        "CAMERA"
+      ]
     },
     "web": {
       "favicon": "./assets/favicon.png"
