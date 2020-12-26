@@ -26,8 +26,9 @@
       },
       "package": "com.vhs.test",
       "permissions": [
-        "CAMERA_ROLL",
-        "CAMERA"
+        "MEDIA_LIBRARY",
+        "CAMERA",
+        "CAMERA_ROLL"
       ]
     },
     "web": {

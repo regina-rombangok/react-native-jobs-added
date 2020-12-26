@@ -4,6 +4,7 @@ import { Text, SafeAreaView, StyleSheet, StatusBar, TouchableOpacity, TextInput,
 import * as ImagePicker from 'expo-image-picker';
 import Constants from 'expo-constants';
 import * as MediaLibrary from 'expo-media-library';
+import * as Permissions from 'expo-permissions';
 
 export default function FilesScreen({ route, navigation }) {
   const { neededService, location, description } = route.params;
@@ -14,8 +15,14 @@ export default function FilesScreen({ route, navigation }) {
   useEffect(() => {
     (async () => {
       if (Platform.OS !== 'web') {
-        const { status } = await ImagePicker.requestMediaLibraryPermissionsAsync();
-        if (status !== 'granted') {
+        const mediaLibraryPerms = await Permissions.askAsync(Permissions.MEDIA_LIBRARY);
+        const cameraPerms = await Permissions.askAsync(Permissions.CAMERA);
+        const cameraRollPerms = await Permissions.askAsync(Permissions.CAMERA_ROLL);
+        alert("CAMERA_ROLL " + cameraRollPerms.status);
+        alert("CAMERA " + cameraPerms.status);
+        alert("MEDIA_LIBRARY " + mediaLibraryPerms.status);
+        // const { status } = await ImagePicker.requestCameraPermissionsAsync();
+        if (cameraRollPerms.status !== "granted" || cameraPerms.status !== "granted" || mediaLibraryPerms.status !== 'granted') {
           alert('Sorry, we need camera roll permissions to make this work!');
         }
       }
